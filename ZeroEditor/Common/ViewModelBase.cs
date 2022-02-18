@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
-
+using System.Runtime.Serialization;
 
 namespace ZeroEditor
 {
-    internal class ViewModelBase : INotifyPropertyChanged
+    [DataContract(IsReference = true)]
+    public class ViewModelBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
