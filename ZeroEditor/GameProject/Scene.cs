@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ZeroEditor.GameProject
 {
-    [DataContract(Name = "Game")]
+    [DataContract(Name = "Scene")]
     public class Scene : ViewModelBase
     {
         private string _name;
@@ -27,6 +27,20 @@ namespace ZeroEditor.GameProject
         }
         [DataMember]
         public Project Project { get; private set; }
+        private bool _isActive;
+        [DataMember]
+        public bool IsActive
+        {
+            get => _isActive;
+            set
+            {
+                if (_isActive != value)
+                {
+                    _isActive = value;
+                    OnPropertyChanged(nameof(IsActive));
+                }
+            }
+        }
 
         public Scene(Project project, string name)
         {
