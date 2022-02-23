@@ -19,8 +19,8 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="1" x:Name="browserContent">
           <StackPanel Orientation="Horizontal" Grid.Row="1">
-              <local:OpenProjectView />
-              <local:NewProjectView />
+              <local:OpenProjectView x:Name="openProjectView"/>
+              <local:NewProjectView x:Name="newProjectView"/>
             </StackPanel>
         </StackPanel>
     </Grid>

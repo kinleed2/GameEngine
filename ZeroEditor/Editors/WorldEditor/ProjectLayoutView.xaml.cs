@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ZeroEditor.Components;
 using ZeroEditor.GameProject;
+using ZeroEditor.Utilities;
 
 namespace ZeroEditor.Editors
 {
@@ -36,8 +37,30 @@ namespace ZeroEditor.Editors
 
         private void OnGameEntities_ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var entity = (sender as ListBox).SelectedItems[0];
-            GameEntityView.Instance.DataContext = entity;
+            GameEntityView.Instance.DataContext = null;
+            var listBox = sender as ListBox;
+            if(e.AddedItems.Count > 0)
+            {
+                GameEntityView.Instance.DataContext = listBox.SelectedItems[0];
+
+            }
+            var newSelection = listBox.SelectedItems.Cast<GameEntity>().ToList();
+            var previousSelection = newSelection.Except(e.AddedItems.Cast<GameEntity>()).Concat(e.RemovedItems.Cast<GameEntity>()).ToList();
+
+            Project.UndoRedo.Add(new UndoRedoAction(
+                () => 
+                {
+                    listBox.UnselectAll();
+                    previousSelection.ForEach(x => (listBox.ItemContainerGenerator.ContainerFromItem(x) as ListBoxItem).IsSelected = true);
+                },
+                () => 
+                {
+                    listBox.UnselectAll();
+                    newSelection.ForEach(x => (listBox.ItemContainerGenerator.ContainerFromItem(x) as ListBoxItem).IsSelected = true);
+                },
+                "Selection changed"
+                ));
+
         }
     }
 }

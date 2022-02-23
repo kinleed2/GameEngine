@@ -11,18 +11,19 @@ namespace ZeroEditor.Utilities
 {
     public static class Serializer
     {
-        public static void ToFile<T>(T intstance, string path)
+        public static void ToFile<T>(T instance, string path)
         {
             try
             {
                 using var fs = new FileStream(path, FileMode.Create);
                 var serializer = new DataContractSerializer(typeof(T));
-                serializer.WriteObject(fs, intstance);
+                serializer.WriteObject(fs, instance);
             }
             catch(Exception ex)
             {
                 Debug.WriteLine(ex.Message);
-                // TODO: log error
+                Logger.Log(MessageType.Error, $"Failed to serialize {instance}{path}");
+                throw;
             }
         }
         internal static T FromFile<T>(string path)
@@ -37,8 +38,8 @@ namespace ZeroEditor.Utilities
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
-                // TODO: log error
-                return default(T);
+                Logger.Log(MessageType.Error, $"Failed to deserialize {path}");
+                throw;
             }
         }
     }
