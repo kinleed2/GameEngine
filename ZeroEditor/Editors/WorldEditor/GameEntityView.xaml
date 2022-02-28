@@ -39,12 +39,13 @@
               <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
           <TextBlock Text="Name" Grid.Column="0" Margin="5,0,0,0"/>
-            <TextBox Text="{Binding Name}" Grid.Column="1" Tag="{Binding RenameCommand}"/><!--TODO: Implement original textBox system-->
-            <StackPanel Orientation="Horizontal" Grid.Column="2">
+                <TextBox Text="{Binding Name}" Grid.Column="1"
+                         GotKeyboardFocus="OnName_TextBox_GetKeyboardFocus"
+                         LostKeyboardFocus="OnName_TextBox_LostKeyboardFocus"/>
+          <StackPanel Orientation="Horizontal" Grid.Column="2">
               <TextBlock Text="Enabled" Margin="5,0,0,0"/>
               <CheckBox IsChecked="{Binding IsEnabled, Mode=OneWay}" 
-                        Command="{Binding IsEnabledCommand}"
-                        CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}}"
+                        Click="OnIsEnabled_CheckBox_Click"
                         Margin="5,0" VerticalAlignment="Center"/>
             </StackPanel>
         </Grid>

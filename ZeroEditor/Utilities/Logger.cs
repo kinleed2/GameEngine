@@ -15,7 +15,7 @@ namespace ZeroEditor.Utilities
     {
         Info = 0x01,
         Warning = 0x02,
-        Error = 0x03,
+        Error = 0x04,
     }
 
     class LogMessage
@@ -43,7 +43,7 @@ namespace ZeroEditor.Utilities
     static  class Logger
     {
         private static int _messageFilter = (int)(MessageType.Info | MessageType.Warning | MessageType.Error);
-        private readonly static ObservableCollection<LogMessage> _messages = new ObservableCollection<LogMessage>();
+        private static readonly ObservableCollection<LogMessage> _messages = new ObservableCollection<LogMessage>();
         public static ReadOnlyObservableCollection<LogMessage> Messages
         { get; } = new ReadOnlyObservableCollection<LogMessage>(_messages);
         public static CollectionViewSource FilteredMessages

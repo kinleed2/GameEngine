@@ -13,7 +13,7 @@ using ZeroEditor.Utilities;
 namespace ZeroEditor.GameProject
 {
     [DataContract(Name = "Scene")]
-    public class Scene : ViewModelBase
+    class Scene : ViewModelBase
     {
         private string _name;
         [DataMember]

@@ -64,7 +64,7 @@ namespace ZeroEditor.GameProject
 
         }
 
-        public static Project Open(ProjectData data)
+        internal static Project Open(ProjectData data)
         {
             ReadProjectData();
             var project = _projects.FirstOrDefault(x => x.FullPath == data.FullPath);

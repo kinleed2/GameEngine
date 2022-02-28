@@ -38,7 +38,6 @@ xmlns:gameproject="clr-namespace:ZeroEditor.GameProject" d:DataContext="{d:Desig
                 <TabControl Grid.Row="1">
                     <TabItem Header="History">
                       <utl:UndoRedoView DataContext="{Binding UndoRedo}"/>
-                      
                     </TabItem>
                     <TabItem Header="Log">
                       <utl:LoggerView/>

@@ -14,7 +14,7 @@ using ZeroEditor.Utilities;
 namespace ZeroEditor.GameProject
 {
     [DataContract(Name = "Game")]
-    public class Project : ViewModelBase
+    class Project : ViewModelBase
     {
 
         public static string Extension { get; } = ".zero";
